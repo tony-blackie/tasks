@@ -26,12 +26,11 @@ export class TasksController {
     @Get()
     @UsePipes(ValidationPipe)
     getTasks(@Query() filterDto: FilterTasksDto): Promise<Task[]> {
-        // if (Object.keys(filterDto).length) {
-        //     return this.tasksService.getFilteredTasks(
-        //         filterDto.search,
-        //         filterDto.status,
-        //     );
-        // }
+        if (Object.keys(filterDto).length) {
+            return this.tasksService.getTasks({
+                ...filterDto
+            });
+        }
 
         return this.tasksService.getTasks(filterDto);
     }
