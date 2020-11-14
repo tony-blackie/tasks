@@ -2,6 +2,7 @@ import {
     Controller,
     Get,
     Post,
+    Delete,
     Body,
     Param,
     Patch,
@@ -46,10 +47,10 @@ export class TasksController {
         return this.tasksService.createTask(createTaskDto);
     }
 
-    // @Delete('/:id')
-    // deleteTask(@Param('id') id: string): Task[] {
-    //     return this.tasksService.deleteTask(id);
-    // }
+    @Delete('/:id')
+    deleteTask(@Param('id') id: number): Promise<Task> {
+        return this.tasksService.deleteTask(id);
+    }
 
     @Patch('/:id/status')
     updateTaskStatus(
